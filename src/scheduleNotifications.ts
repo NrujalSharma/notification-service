@@ -5,6 +5,18 @@ import { Notification } from './notifications';
 import { getConnectionPool } from './database';
 
 
+/**
+ * When the notification config
+ * 1. 'sendAt'
+ *          has: It schedules future notifications
+ *          does not have: sends ad-hoc notifications
+ * 2. 'userId'
+ *          has: sends the notification to a single user
+ *          does not have: sends notification to all subscribers
+ * 3. 'frequency'   
+ *          has: schedules notification to be sent periodically
+ *              possible frequencies are 'daily' and 'monthly'
+ */
 export async function schedule() {
     try {
         const pool = await getConnectionPool();

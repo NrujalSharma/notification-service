@@ -11,6 +11,11 @@ const transporter = createTransport({
     }
 });
 
+/**
+ * This is the concrete implementation of
+ * an email notifier using node-mailer and gmail
+ * It also contains proper validations
+ */
 export class EmailNotifier implements Notifier {
     async send(params: NotifierConfig) {
         try {

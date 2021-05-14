@@ -24,6 +24,7 @@ export async function init() {
         notificationObj = notificationObj || new Notification();
         scheduledNotificationObj = scheduledNotificationObj || new ScheduledNotification();
 
+        // Get regular scheduled notifications
         const scheduledNotificationsCron = new CronJob('0 */1 * * * *', async () => {
             const type = 'regular';
             try {
@@ -34,6 +35,7 @@ export async function init() {
             }
         });
 
+        // Get notifications that failed and retry sending them
         const failedNotificationsCron = new CronJob('0 */1 * * * *', async () => {
             const type = 'failed';
             try {
@@ -44,6 +46,10 @@ export async function init() {
             }
         });
 
+        /**
+         * Start the cron jobs to query DB every minute
+         * and send scheduled notifications
+         */
         scheduledNotificationsCron.start();
         failedNotificationsCron.start();
     } catch (error) {

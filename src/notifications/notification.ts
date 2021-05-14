@@ -4,6 +4,13 @@ import { NotifierFactory } from '../notifiers';
 import { NotificationConfig, NotifierConfig, SendNotificationConfig } from '../types';
 import { FailedNotification } from './';
 
+/**
+ * Class to control major functionality related to notifications like scheduling and sending notifications
+ * This has functionality to
+ *      schedule a notification,
+ *      send ad-hoc notifications,
+ *      send periodic notifications
+ */
 export class Notification {
     async schedule(pool: mysql.Pool, params: NotificationConfig) {
         try {

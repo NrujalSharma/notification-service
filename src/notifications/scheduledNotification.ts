@@ -1,6 +1,11 @@
 import * as mysql from 'mysql2/promise';
 import { SendNotificationConfig } from '../types';
 
+/**
+ * This class returns the data related to notifications
+ * from a stored view in the database
+ * and queries it to get notifications scheduled for the current minute
+ */
 export class ScheduledNotification {
     async get (pool: mysql.Pool, type: 'regular'| 'failed') {
         try {

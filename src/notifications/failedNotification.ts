@@ -1,6 +1,13 @@
 import * as mysql from 'mysql2/promise';
 import { FailedNotificationConfig } from '../types';
 
+/**
+ * Class to control major functionality related to failed notifications
+ * This has functionality to
+ *      upsert failed notifications in DB for retry
+ *      change status of a previously failed notification
+ *      it also reschedules notifications for retries
+ */
 export class FailedNotification {
 
     async upsert(pool: mysql.Pool, params: FailedNotificationConfig) {
