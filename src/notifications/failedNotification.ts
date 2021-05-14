@@ -50,7 +50,7 @@ export class FailedNotification {
                         ?,
                         ?,
                         ?,
-                        DATE_ADD(NOW(), INTERVAL 1 MINUTE)
+                        DATE_ADD(NOW(), INTERVAL 5 MINUTE)
                     );
                 `;
 
@@ -107,7 +107,7 @@ export class FailedNotification {
                 SET
                     retryCount = IF(retryCount < 3, retryCount + 1, retryCount),
                     status = IF(retryCount = 3, 'failed', 'pending'),
-                    sendAt = IF(retryCount = 3, sendAt, DATE_ADD(NOW(), INTERVAL 1 MINUTE)),
+                    sendAt = IF(retryCount < 3, sendAt, DATE_ADD(NOW(), INTERVAL 5 MINUTE)),
                     error = ?,
                     updatedAt = NOW(),
                     userId = ?
@@ -138,7 +138,7 @@ export class FailedNotification {
                         ?,
                         ?,
                         ?,
-                        DATE_ADD(NOW(), INTERVAL 1 MINUTE)
+                        DATE_ADD(NOW(), INTERVAL 5 MINUTE)
                     );
                 `;
 
