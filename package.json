@@ -4,9 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "npm run build && node dist/app.js",
     "build": "tsc",
     "test": "jest",
-    "dev": "npm run build && node dist/app.js"
+    "dev": "npm run build && nodemon dist/app.js"
   },
   "author": "NrujalSharma",
   "license": "ISC",
